@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mapper.TemMapper">
+    <select id="selectByStation" resultType="com.model.DayTemp">
+        select * from "SURF_CHN_MUL_DAY" where "Station_Id_C"=#{stationId} and ("Datetime" between #{startTime} and #{endTime})
+    </select>
+    <select id="selectCitiesInProvince" resultType="java.lang.String">
+        select distinct("City") from "STA_INFO_SURF_CHN" where "Province"=#{provinceName};
+    </select>
+    <select id="selectStationByProvince" resultType="java.lang.String">
+        select distinct("Station_Id_C") from "STA_INFO_SURF_CHN" where "Province"=#{provinceName};
+    </select>
+    <select id="selectStationInCity" resultType="java.lang.String">
+        select "Station_Id_C" from "STA_INFO_SURF_CHN" where "City"=#{city};
+    </select>
+</mapper>
